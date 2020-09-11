@@ -15,7 +15,7 @@ const files = {
     imagesPath: "src/**/*.images",
     jsPath: "src/**/*.js"
 }
-//Task - Clean Removes the dist folder
+//Task - Clean Remove the pub folder
 function clean() {
    return del(['pub/']);
 }
