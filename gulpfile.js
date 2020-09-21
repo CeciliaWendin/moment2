@@ -7,13 +7,18 @@ const cssnano = require('cssnano');
 const imagemin = require('gulp-imagemin');
 const browsersync = require("browser-sync").create();
 const del = require('del');
+const sass = require('gulp-sass');
+sass.compiler = require('node-sass');
+const GulpClient = require("gulp");
+const sourcemaps = require('gulp-sourcemaps');
 
 //Paths
 const files = {
     htmlPath: "src/**/*.html",
     cssPath: "src/**/*.css",
     imagesPath: "src/**/*.images",
-    jsPath: "src/**/*.js"
+    jsPath: "src/**/*.js",
+    sassPath: "src/**/*.scss"
 }
 //Task - Clean Remove the pub folder
 function clean() {
@@ -52,6 +57,16 @@ function images() {
        //.pipe(browserSync.stream());
  }
 
+ //Task - Scss
+ function sassTask() {
+    return src(files.sassPath)
+        .pipe(sourcemaps.init())
+        .pipe(concat('main.css'))
+        .pipe(sass().on("error", sass.logError))
+        .pipe(dest("pub/css"))
+        //.pipe(browserSync.stream());
+}
+
  //Browsersync and watch
  function serve() {
     browsersync.init({
@@ -60,17 +75,19 @@ function images() {
 
     watch([files.htmlPath], { intervall: 1000 }, html);
     watch([files.cssPath], { intervall: 1000 }, css);
+    watch([files.sassPath], { intervall: 1000 }, sassTask);
     watch([files.jsPath], {intervall: 1000 }, js);
     watch([files.imagesPath], {intervall: 1000 }, images);
 }
 
-/* Export all public tasks - type gulp <task> to use */
+/* Export all public tasks */
 exports.clean = clean;
 exports.html = html;
 exports.css = css;
+exports.sassTask = sassTask;
 exports.js = js;
 exports.images = images;
 exports.serve = serve;
 
-/* Export default command - type gulp to use */
-exports.default = series(clean, parallel(html, css, js, images), serve);
+/* Export default command */
+exports.default = series(clean, parallel([html, css, sassTask, js, images]), serve);

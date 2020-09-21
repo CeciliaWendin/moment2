@@ -1,0 +1,27 @@
+/*-- Fonts --*/
+$font1: 'Raleway', sans-serif;
+$font2: 'Lora', serif;
+
+/*-- Colors --*/
+$blue: #6B7A8F;
+$green: #89937d;
+$beige: #FEFEFA;
+$grey: #333333;
+
+
+/*-- Image path --*/
+$imgpath: '../../images';
+
+/*-- Box padding --*/
+$boxpadding: 20px;
+
+/*-- Borders --*/
+$border1: 2px solid $blue;
+
+/*-- Responsive columns --*/
+@mixin bp-small {
+    @media only screen and (max-width: 30em) {
+      @content;
+    }
+  }
+

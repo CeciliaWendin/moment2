@@ -1,0 +1,16 @@
+@mixin buttons($bg) {
+    padding: 10px 20px;
+    background-color: $bg;
+    color: #ffffff;
+    font-family: $font1;
+    &:hover {
+        background: darken($bg, 10%);
+    }
+}
+.button1 {
+    @include buttons($golden);
+}
+.button2 {
+    @include buttons($blue);
+}
+
