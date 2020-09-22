@@ -1,3 +1,4 @@
+/*-- Buttons --*/
 @mixin buttons($bg) {
     padding: 10px 20px;
     background-color: $bg;
@@ -8,9 +9,35 @@
     }
 }
 .button1 {
-    @include buttons($golden);
+    @include buttons($green);
 }
 .button2 {
     @include buttons($blue);
 }
-
+/*-- Fonts --*/
+body {
+    font-family: 100% $font2;
+    color: $grey;
+    background-color: $beige;
+}
+h1 {
+    font-family: 100% $font1;
+    color: $beige;
+    font-weight: 400;
+    font-size: 32px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 30px;
+}
+h4 {
+    font-family: 100% $font1;
+    color: $beige;
+    font-weight: 400;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.main-nav {
+    font-family: $font1;
+}

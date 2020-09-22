@@ -16,9 +16,9 @@ const sourcemaps = require('gulp-sourcemaps');
 const files = {
     htmlPath: "src/**/*.html",
     cssPath: "src/**/*.css",
-    imagesPath: "src/**/*.images",
+    imagesPath: "src/images/*",
     jsPath: "src/**/*.js",
-    sassPath: "src/**/*.scss"
+    sassPath: "src/**/*.scss",
 }
 //Task - Clean Remove the pub folder
 function clean() {
@@ -61,8 +61,9 @@ function images() {
  function sassTask() {
     return src(files.sassPath)
         .pipe(sourcemaps.init())
-        .pipe(concat('main.css'))
+        //.pipe(concat('main.css'))
         .pipe(sass().on("error", sass.logError))
+        .pipe(sourcemaps.write('/.'))
         .pipe(dest("pub/css"))
         //.pipe(browserSync.stream());
 }
