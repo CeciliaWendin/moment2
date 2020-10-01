@@ -11,6 +11,7 @@ const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
 const GulpClient = require("gulp");
 const sourcemaps = require('gulp-sourcemaps');
+const babel = require("gulp-babel");
 
 //Paths
 const files = {
@@ -35,6 +36,7 @@ function html() {
 function js() {
     return src(files.jsPath)
     .pipe(concat('main.js'))
+    .pipe(babel())
     .pipe(uglify())
     .pipe(dest('pub/js'))
     .pipe(browsersync.stream());
