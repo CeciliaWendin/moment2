@@ -36,7 +36,9 @@ function html() {
 function js() {
     return src(files.jsPath)
     .pipe(concat('main.js'))
-    .pipe(babel())
+    .pipe(babel({
+    presets: ['@babel/env']
+    }))
     .pipe(uglify())
     .pipe(dest('pub/js'))
     .pipe(browsersync.stream());
