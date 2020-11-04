@@ -1,1 +1,2 @@
-hello = () => "Hello World!";
+"use strict"
+const hello = () => "Hello World!";
